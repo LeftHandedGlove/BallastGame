@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://cowtbjdby0e6c"]
+
+[ext_resource type="Script" path="res://sub_parts/door.gd" id="2_45kiy"]
+[ext_resource type="AnimationLibrary" uid="uid://chlppq6lmhnel" path="res://sub_parts/DoorAnimations.res" id="3_8qtsd"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_317dq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_txng0"]
+
+[node name="SingleDoorWall" type="Node3D"]
+
+[node name="Wall" type="Node3D" parent="."]
+
+[node name="LeftWall" type="CSGBox3D" parent="Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.875, 1.25, 0)
+use_collision = true
+size = Vector3(0.75, 2.5, 0.1)
+
+[node name="RightWall" type="CSGBox3D" parent="Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.875, 1.25, 0)
+use_collision = true
+size = Vector3(0.75, 2.5, 0.1)
+
+[node name="TopWall" type="CSGBox3D" parent="Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.375, 0)
+use_collision = true
+size = Vector3(2.5, 0.25, 0.1)
+
+[node name="Door" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 0)
+script = ExtResource("2_45kiy")
+
+[node name="RightDoor" type="CSGBox3D" parent="Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.73, 0, 0)
+use_collision = true
+size = Vector3(0.5, 2.25, 0.08)
+
+[node name="LeftDoor" type="CSGBox3D" parent="Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73, 0, 0)
+use_collision = true
+size = Vector3(0.5, 2.25, 0.08)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Door"]
+libraries = {
+"": SubResource("AnimationLibrary_317dq"),
+"DoorAnimations": ExtResource("3_8qtsd")
+}
+
+[node name="FrontCollider" type="Area3D" parent="Door"]
+transform = Transform3D(1.75, 0, 0, 0, 1.75, 0, 0, 0, 1.75, 0, 0, 0.875)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/FrontCollider"]
+shape = SubResource("BoxShape3D_txng0")
+
+[node name="RearCollider" type="Area3D" parent="Door"]
+transform = Transform3D(1.75, 0, 0, 0, 1.75, 0, 0, 0, 1.75, 0, 0, -0.875)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/RearCollider"]
+shape = SubResource("BoxShape3D_txng0")
+
+[connection signal="body_entered" from="Door/FrontCollider" to="Door" method="_on_front_collider_body_entered"]
+[connection signal="body_exited" from="Door/FrontCollider" to="Door" method="_on_front_collider_body_exited"]
+[connection signal="body_entered" from="Door/RearCollider" to="Door" method="_on_rear_collider_body_entered"]
+[connection signal="body_exited" from="Door/RearCollider" to="Door" method="_on_rear_collider_body_exited"]

@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://46pux75pl6xg"]
+
+[ext_resource type="Script" path="res://kid_stuff/csg_torus_3d.gd" id="1_jhmg3"]
+[ext_resource type="Script" path="res://kid_stuff/character_body_3d.gd" id="1_qhcs3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n323u"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_v2a0h"]
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0174787, -0.0374966, 0.0224605)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.80009, -0.43938, 0.228537)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.827434, -0.50336, 0.248962, 0, 0.443337, 0.896355, -0.561564, -0.741674, 0.366832, 1.15981, 3.0836, 2.34117)
+light_energy = 16.0
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="."]
+transform = Transform3D(0.000122363, 0.0787721, -0.996893, -0.999999, 0.00155337, 0, 0.00154854, 0.996891, 0.0787722, 1.80009, 0.543462, 0.228537)
+sides = 64
+ring_sides = 64
+smooth_faces = false
+script = ExtResource("1_jhmg3")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.42073, 2.29213, 0)
+script = ExtResource("1_qhcs3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_n323u")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(0.986974, 0.0440206, -0.154741, 1.71055e-08, 0.961837, 0.273623, 0.16088, -0.270059, 0.949308, 1.88368, -0.456301, 3.12647)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23972, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_v2a0h")

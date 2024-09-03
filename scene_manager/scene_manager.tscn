@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlrtpsx65nwnu"]
+
+[ext_resource type="Script" path="res://scene_manager/scene_manager.gd" id="1_yv5yu"]
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_yv5yu")
+scenes = {
+"MainMenu": "res://main_menu/main_menu.tscn",
+"SubBuilder": "res://sub_builder/sub_builder.tscn",
+"SubPicker": "res://sub_picker/sub_picker.tscn"
+}

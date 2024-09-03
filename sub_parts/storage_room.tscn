@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://deyyb3cd4vthy"]
+
+[ext_resource type="PackedScene" uid="uid://be1k8jquftq5j" path="res://sub_parts/floor.tscn" id="1_5m0eb"]
+[ext_resource type="PackedScene" uid="uid://dw4qu5s848qln" path="res://sub_parts/ceiling.tscn" id="2_3w7xb"]
+[ext_resource type="PackedScene" uid="uid://cowtbjdby0e6c" path="res://sub_parts/single_door_wall.tscn" id="3_f70c0"]
+
+[node name="StorageRoom" type="Node3D"]
+
+[node name="Floor" parent="." instance=ExtResource("1_5m0eb")]
+
+[node name="Ceiling" parent="." instance=ExtResource("2_3w7xb")]
+
+[node name="NorthSingleDoorWall" parent="." instance=ExtResource("3_f70c0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.25, 0, 0)
+
+[node name="SouthSingleDoorWall" parent="." instance=ExtResource("3_f70c0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.25, 0, 0)
+
+[node name="WestSingleDoorWall" parent="." instance=ExtResource("3_f70c0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25)
+
+[node name="EastSingleDoorWall" parent="." instance=ExtResource("3_f70c0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.25)

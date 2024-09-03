@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://eh8h4uwvx84e"]
+
+[node name="SubInfoPanelContainer" type="PanelContainer"]
+
+[node name="SubInfoMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="SubInfoHBoxContainer" type="HBoxContainer" parent="SubInfoMarginContainer"]
+layout_mode = 2
+
+[node name="SubNameLabel" type="RichTextLabel" parent="SubInfoMarginContainer/SubInfoHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PLACEHOLDER NAME"
+fit_content = true
+autowrap_mode = 0
+
+[node name="LoadSubButton" type="Button" parent="SubInfoMarginContainer/SubInfoHBoxContainer"]
+layout_mode = 2
+text = "Load Sub"

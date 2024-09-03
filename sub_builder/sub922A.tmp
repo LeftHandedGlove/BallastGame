@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5ymld4wi8dlw"]
+
+[ext_resource type="Script" path="res://sub_builder/sub_builder.gd" id="1_qaxmb"]
+[ext_resource type="PackedScene" uid="uid://cauavftx2iy02" path="res://sub_builder/bottom_world_plane.tscn" id="4_5eegf"]
+[ext_resource type="Script" path="res://sub_builder/sub_builder_camera.gd" id="4_u8l40"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_onkbm"]
+
+[node name="SubBuilder" type="Node3D"]
+script = ExtResource("1_qaxmb")
+
+[node name="BottomWorldPlane" parent="." instance=ExtResource("4_5eegf")]
+
+[node name="SubBuilderCamera" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+script = ExtResource("4_u8l40")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubBuilderCamera"]
+shape = SubResource("SphereShape3D_onkbm")
+
+[node name="Neck" type="Node3D" parent="SubBuilderCamera"]
+
+[node name="Head" type="Node3D" parent="SubBuilderCamera/Neck"]
+
+[node name="Camera3D" type="Camera3D" parent="SubBuilderCamera/Neck/Head"]

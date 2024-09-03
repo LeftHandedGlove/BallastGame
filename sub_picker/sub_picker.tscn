@@ -1,0 +1,102 @@
+[gd_scene load_steps=4 format=3 uid="uid://eu5xw584rbfu"]
+
+[ext_resource type="Script" path="res://sub_picker/sub_picker.gd" id="1_qhlfi"]
+[ext_resource type="Theme" uid="uid://bfy720xv7xs4r" path="res://main_menu/title_gamemode_theme.tres" id="2_iq6dq"]
+[ext_resource type="PackedScene" uid="uid://eh8h4uwvx84e" path="res://sub_picker/sub_info_panel_container.tscn" id="3_ohr55"]
+
+[node name="SubPickerScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qhlfi")
+
+[node name="OverallPanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OverallMarginContainer" type="MarginContainer" parent="OverallPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="OverallVBoxContainer" type="VBoxContainer" parent="OverallPanelContainer/OverallMarginContainer"]
+layout_mode = 2
+
+[node name="TopPanelContainer" type="PanelContainer" parent="OverallPanelContainer/OverallMarginContainer/OverallVBoxContainer"]
+layout_mode = 2
+
+[node name="TopMarginContainer" type="MarginContainer" parent="OverallPanelContainer/OverallMarginContainer/OverallVBoxContainer/TopPanelContainer"]
+layout_mode = 2
+
+[node name="TopHBoxContainer" type="HBoxContainer" parent="OverallPanelContainer/OverallMarginContainer/OverallVBoxContainer/TopPanelContainer/TopMarginContainer"]
+layout_mode = 2
+
+[node name="PreviousScreenButton" type="Button" parent="OverallPanelContainer/OverallMarginContainer/OverallVBoxContainer/TopPanelContainer/TopMarginContainer/TopHBoxContainer"]
+layout_mode = 2
+text = "Previous
+Screen"
+
+[node name="TitlePanelContainer" type="PanelContainer" parent="OverallPanelContainer/OverallMarginContainer/OverallVBoxContainer/TopPanelContainer/TopMarginContainer/TopHBoxContainer"]
+layout_mode = 2
+
+[node name="TitleMarginContainer" type="MarginContainer" parent="OverallPanelContainer/OverallMarginContainer/OverallVBoxContainer/TopPanelContainer/TopMarginContainer/TopHBoxContainer/TitlePanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="TitleLabel" type="RichTextLabel" parent="OverallPanelContainer/OverallMarginContainer/OverallVBoxContainer/TopPanelContainer/TopMarginContainer/TopHBoxContainer/TitlePanelContainer/TitleMarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_iq6dq")
+text = "Sub Builder"
+fit_content = true
+autowrap_mode = 0
+
+[node name="SelectionPanelContainer" type="PanelContainer" parent="OverallPanelContainer/OverallMarginContainer/OverallVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SelectionMarginContainer" type="MarginContainer" parent="OverallPanelContainer/OverallMarginContainer/OverallVBoxContainer/SelectionPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SelectionVBoxContainer" type="VBoxContainer" parent="OverallPanelContainer/OverallMarginContainer/OverallVBoxContainer/SelectionPanelContainer/SelectionMarginContainer"]
+layout_mode = 2
+
+[node name="NewSubButton" type="Button" parent="OverallPanelContainer/OverallMarginContainer/OverallVBoxContainer/SelectionPanelContainer/SelectionMarginContainer/SelectionVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Create New Sub"
+
+[node name="LoadSubPanelContainer" type="PanelContainer" parent="OverallPanelContainer/OverallMarginContainer/OverallVBoxContainer/SelectionPanelContainer/SelectionMarginContainer/SelectionVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LoadSubMarginContainer" type="MarginContainer" parent="OverallPanelContainer/OverallMarginContainer/OverallVBoxContainer/SelectionPanelContainer/SelectionMarginContainer/SelectionVBoxContainer/LoadSubPanelContainer"]
+layout_mode = 2
+
+[node name="LoadSubScrollContainer" type="ScrollContainer" parent="OverallPanelContainer/OverallMarginContainer/OverallVBoxContainer/SelectionPanelContainer/SelectionMarginContainer/SelectionVBoxContainer/LoadSubPanelContainer/LoadSubMarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="LoadSubVBoxContainer" type="VBoxContainer" parent="OverallPanelContainer/OverallMarginContainer/OverallVBoxContainer/SelectionPanelContainer/SelectionMarginContainer/SelectionVBoxContainer/LoadSubPanelContainer/LoadSubMarginContainer/LoadSubScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SubInfoPanelContainer" parent="OverallPanelContainer/OverallMarginContainer/OverallVBoxContainer/SelectionPanelContainer/SelectionMarginContainer/SelectionVBoxContainer/LoadSubPanelContainer/LoadSubMarginContainer/LoadSubScrollContainer/LoadSubVBoxContainer" instance=ExtResource("3_ohr55")]
+layout_mode = 2
+
+[connection signal="pressed" from="OverallPanelContainer/OverallMarginContainer/OverallVBoxContainer/TopPanelContainer/TopMarginContainer/TopHBoxContainer/PreviousScreenButton" to="." method="_on_previous_screen_button_pressed"]
+[connection signal="pressed" from="OverallPanelContainer/OverallMarginContainer/OverallVBoxContainer/SelectionPanelContainer/SelectionMarginContainer/SelectionVBoxContainer/NewSubButton" to="." method="_on_new_sub_button_pressed"]

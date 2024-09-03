@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://b54kj4csoodey"]
+
+[ext_resource type="Script" path="res://sub_builder/character_body_3d.gd" id="1_6hj7p"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_042k4"]
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_6hj7p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.7, 0, -5.58794e-09, 0, 0.7, 0, 5.58794e-09, 0, 0.7, 0, 0.7, 0)
+shape = SubResource("CapsuleShape3D_042k4")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)
+radius = 0.35
+height = 1.3
+sides = 16
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.999984, -0.00570034, -0.000645181, 0.00570034, 0.974687, 0.223501, -0.000645179, -0.223501, 0.974704, 0.0257102, 1.80592, 1.00806)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67179, 0)
+light_energy = 0.5

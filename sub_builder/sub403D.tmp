@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://c5ymld4wi8dlw"]
+
+[ext_resource type="Script" path="res://sub_builder/sub_builder.gd" id="1_qaxmb"]
+[ext_resource type="PackedScene" uid="uid://cauavftx2iy02" path="res://sub_builder/bottom_world_plane.tscn" id="4_5eegf"]
+[ext_resource type="Script" path="res://sub_builder/sub_builder_camera.gd" id="4_u8l40"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8udrv"]
+sky_top_color = Color(0.449905, 0.638188, 0.977981, 1)
+sky_horizon_color = Color(0.671344, 0.728862, 0.904396, 1)
+ground_bottom_color = Color(0.23547, 0.27726, 0.639603, 1)
+ground_horizon_color = Color(0.671344, 0.728862, 0.904396, 1)
+
+[sub_resource type="Sky" id="Sky_dn5gp"]
+sky_material = SubResource("ProceduralSkyMaterial_8udrv")
+
+[sub_resource type="Environment" id="Environment_68qju"]
+background_mode = 2
+sky = SubResource("Sky_dn5gp")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_onkbm"]
+
+[node name="SubBuilder" type="Node3D"]
+script = ExtResource("1_qaxmb")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_68qju")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="BottomWorldPlane" parent="." instance=ExtResource("4_5eegf")]
+
+[node name="SubBuilderCamera" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+script = ExtResource("4_u8l40")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubBuilderCamera"]
+shape = SubResource("SphereShape3D_onkbm")
+
+[node name="Neck" type="Node3D" parent="SubBuilderCamera"]
+
+[node name="Head" type="Node3D" parent="SubBuilderCamera/Neck"]
+
+[node name="Camera3D" type="Camera3D" parent="SubBuilderCamera/Neck/Head"]
